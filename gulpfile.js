@@ -36,7 +36,7 @@ gulp.task('jshint', function() {
 });
 
 gulp.task('less', function() {
-    gulp.src('less/**/*.*')
+    gulp.src(userPrefix + 'less/**/*.*')
         .pipe(less({
             paths: [path.join(__dirname, 'less', 'includes')]
         }))
