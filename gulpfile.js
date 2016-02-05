@@ -21,30 +21,40 @@ var   userPrefix = 'src/',
        vendorCss = [vendorPrefix + 'bootstrap/dist/css/bootstrap.css'],
        angularJS = vendorPrefix + 'angular/angular.min.js';
 
+
 // #### Task Definitions ####
 
 gulp.task('default', ['build']);
 
 gulp.task('build', ['less', 'minifyApp', 'minifyVendors', 'minifyVendorCss', 'moveStuff']);
 
-
-// ### Build dependencies
-
 gulp.task('jshint', function() {
     gulp.src(appFiles)
         .pipe(jshint({
-            globals: {
+            "curly":  true,
+            "immed":  true,
+            "newcap": true,
+            "noarg":  true,
+            "sub":    true,
+            "boss":   true,
+            "eqnull": true,
+            "node":   true,
+            "undef":  true,
+            "globals": {
                 "angular": false,
-                "_": false,
-                "jQuery": false,
-                "$": false,
-                "moment": false,
+                "_":       false,
+                "jQuery":  false,
+                "$":       false,
+                "moment":  false,
                 "console": false,
-                "io": false,
+                "io":      false,
             },
         }))
         .pipe(jshint.reporter(stylish))
 });
+
+
+// ### Build dependencies
 
 gulp.task('less', function() {
     gulp.src(userPrefix + 'less/**/*.*')

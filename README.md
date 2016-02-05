@@ -39,4 +39,4 @@ Then we should be able to run
 
 	gulp
 
-Which in return would give us a build folder, from where it is possible to run the index.html file.
+Which in return would give us a build folder, from where it is possible to run the *index.html* file.
