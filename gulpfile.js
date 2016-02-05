@@ -2,7 +2,7 @@
 
 var        gulp = require('gulp'),
          uglify = require('gulp-uglify'),
-          ngmin = require('gulp-ngmin'),
+          ngmin = require('gulp-ng-annotate'),
          jshint = require('gulp-jshint'),
          concat = require('gulp-concat'),
          cssmin = require('gulp-cssmin'),
@@ -68,7 +68,9 @@ gulp.task('less', function() {
 
 gulp.task('minifyApp', function() {
     gulp.src(appFiles)
-        .pipe(ngmin())
+        .pipe(ngmin({
+            single_quotes: true
+        }))
         .pipe(gulp.dest('build'))
 });
 
