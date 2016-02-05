@@ -34,8 +34,13 @@ gulp.task('jshint', function() {
     gulp.src(appFiles)
         .pipe(jshint({
             globals: {
-                "jQuery": true,
-                "$": true,
+                "angular": false,
+                "_": false,
+                "jQuery": false,
+                "$": false,
+                "moment": false,
+                "console": false,
+                "io": false,
             },
         }))
         .pipe(jshint.reporter(stylish))
