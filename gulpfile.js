@@ -10,17 +10,14 @@ var        gulp = require('gulp'),
            path = require('path'),
     browserSync = require('browser-sync');
 
-var     appFiles = ['App.js'],
-
+var     appFiles = [userPrefix + 'App.js'],
+	  userPrefix = 'src/',
     vendorPrefix = 'node_modules/',
-
      vendorFiles = [
         vendorPrefix + 'jquery/dist/jquery.js',
         vendorPrefix + 'bootstrap/dist/js/bootstrap.js',
     ],
-
        vendorCss = [vendorPrefix + 'bootstrap/dist/css/bootstrap.css'],
-
        angularJS = vendorPrefix + 'angular/angular.min.js';
 
 // #### Task Definitions ####
@@ -73,6 +70,6 @@ gulp.task('minifyVendorCss', function() {
 });
 
 gulp.task('moveStuff', function() {
-	gulp.src(['*.html'])
+	gulp.src([userPrefix + '*.html'])
 		.pipe(gulp.dest('build'))
 });
