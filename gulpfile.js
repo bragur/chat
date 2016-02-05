@@ -8,10 +8,11 @@ var        gulp = require('gulp'),
          cssmin = require('gulp-cssmin'),
            less = require('gulp-less'),
            path = require('path'),
-    browserSync = require('browser-sync');
+    browserSync = require('browser-sync'),
+        stylish = require('jshint-stylish');
 
-var     appFiles = [userPrefix + 'App.js'],
-	  userPrefix = 'src/',
+var   userPrefix = 'src/',
+        appFiles = [userPrefix + 'App.js'],
     vendorPrefix = 'node_modules/',
      vendorFiles = [
         vendorPrefix + 'jquery/dist/jquery.js',
@@ -31,8 +32,13 @@ gulp.task('build', ['less', 'minifyApp', 'minifyVendors', 'minifyVendorCss', 'mo
 
 gulp.task('jshint', function() {
     gulp.src(appFiles)
-        .pipe(jshint())
-        .pipe(jshint.reporter('default'))
+        .pipe(jshint({
+        	globals: {
+        		"jQuery": true,
+        		"$": true,
+        	},
+        }))
+        .pipe(jshint.reporter(stylish))
 });
 
 gulp.task('less', function() {
