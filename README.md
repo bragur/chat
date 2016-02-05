@@ -1,9 +1,9 @@
 # Chatroom
 
-## This is a project for WEPO at Reykjavik University, Sprng 2016.
+## This is a project for WEPO at Reykjavik University, Spring 2016.
 
 After pulling the repository, run
 
-  npm install
+	npm install
   
 to get all packages.
