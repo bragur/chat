@@ -1,3 +1,5 @@
+// #### Initialize ####
+
 var        gulp = require('gulp'),
          uglify = require('gulp-uglify'),
           ngmin = require('gulp-ngmin'),
@@ -8,26 +10,27 @@ var        gulp = require('gulp'),
            path = require('path'),
     browserSync = require('browser-sync');
 
-var appFiles = [
-    'App.js',
-];
+var     appFiles = ['App.js'],
 
-var vendorPrefix = 'node_modules/';
+    vendorPrefix = 'node_modules/',
 
-var vendorFiles = [
-    vendorPrefix + 'jquery/dist/jquery.js',
-    vendorPrefix + 'bootstrap/dist/js/bootstrap.js',
-]
+     vendorFiles = [
+        vendorPrefix + 'jquery/dist/jquery.js',
+        vendorPrefix + 'bootstrap/dist/js/bootstrap.js',
+    ],
 
-var vendorCss = [
-	vendorPrefix + 'bootstrap/dist/css/bootstrap.css',
-]
+       vendorCss = [vendorPrefix + 'bootstrap/dist/css/bootstrap.css'],
 
-var angularJS = vendorPrefix + 'angular/angular.min.js';
+       angularJS = vendorPrefix + 'angular/angular.min.js';
 
+// #### Task Definitions ####
 
 gulp.task('default', ['build']);
+
 gulp.task('build', ['less', 'minifyApp', 'minifyVendors', 'minifyVendorCss', 'moveStuff']);
+
+
+// ### Build dependencies
 
 gulp.task('jshint', function() {
     gulp.src(appFiles)
@@ -45,13 +48,6 @@ gulp.task('less', function() {
         .pipe(gulp.dest('build/css'))
 });
 
-gulp.task('minifyVendorCss', function() {
-	gulp.src(vendorCss)
-		.pipe(concat('vendor.min.css'))
-		.pipe(cssmin())
-		.pipe(gulp.dest('build/css'))
-});
-
 gulp.task('minifyApp', function() {
     gulp.src(appFiles)
         .pipe(ngmin())
@@ -67,6 +63,13 @@ gulp.task('minifyVendors', function() {
     gulp.src([angularJS, 'vendors.js'])
     	.pipe(concat('vendor.js'))
     	.pipe(gulp.dest('build'))
+});
+
+gulp.task('minifyVendorCss', function() {
+	gulp.src(vendorCss)
+		.pipe(concat('vendor.min.css'))
+		.pipe(cssmin())
+		.pipe(gulp.dest('build/css'))
 });
 
 gulp.task('moveStuff', function() {
