@@ -33,10 +33,10 @@ gulp.task('build', ['less', 'minifyApp', 'minifyVendors', 'minifyVendorCss', 'mo
 gulp.task('jshint', function() {
     gulp.src(appFiles)
         .pipe(jshint({
-        	globals: {
-        		"jQuery": true,
-        		"$": true,
-        	},
+            globals: {
+                "jQuery": true,
+                "$": true,
+            },
         }))
         .pipe(jshint.reporter(stylish))
 });
@@ -59,23 +59,23 @@ gulp.task('minifyApp', function() {
 
 gulp.task('minifyVendors', function() {
     gulp.src(vendorFiles)
-	    .pipe(uglify())
-	    .pipe(concat('vendors.js'))
-	    .pipe(gulp.dest('.'))
+        .pipe(uglify())
+        .pipe(concat('vendors.js'))
+        .pipe(gulp.dest('.'))
 
     gulp.src([angularJS, 'vendors.js'])
-    	.pipe(concat('vendor.js'))
-    	.pipe(gulp.dest('build'))
+        .pipe(concat('vendor.js'))
+        .pipe(gulp.dest('build'))
 });
 
 gulp.task('minifyVendorCss', function() {
-	gulp.src(vendorCss)
-		.pipe(concat('vendor.min.css'))
-		.pipe(cssmin())
-		.pipe(gulp.dest('build/css'))
+    gulp.src(vendorCss)
+        .pipe(concat('vendor.min.css'))
+        .pipe(cssmin())
+        .pipe(gulp.dest('build/css'))
 });
 
 gulp.task('moveStuff', function() {
-	gulp.src([userPrefix + '*.html'])
-		.pipe(gulp.dest('build'))
+    gulp.src([userPrefix + '*.html'])
+        .pipe(gulp.dest('build'))
 });
