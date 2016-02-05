@@ -1,0 +1,36 @@
+{
+  "name": "chat",
+  "version": "1.0.0",
+  "description": "A small chatroom project written in AngularJS for WEPO at Reykjavík University, S2016",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bragur/chat.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bragur/chat/issues"
+  },
+  "homepage": "https://github.com/bragur/chat#readme",
+  "devDependencies": {
+    "angular": "^1.4.9",
+    "bootstrap": "^3.3.6",
+    "browser-sync": "^2.11.1",
+    "express": "^4.13.4",
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-jshint": "^2.0.0",
+    "gulp-less": "^3.0.5",
+    "gulp-ngmin": "^0.3.0",
+    "gulp-uglify": "^1.5.1",
+    "jquery": "^2.2.0",
+    "jshint": "^2.9.1",
+    "path": "^0.12.7",
+    "socket.io": "^1.4.5"
+  }
+}
