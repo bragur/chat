@@ -18,8 +18,8 @@ var   userPrefix = 'src/',
         appFiles = [userPrefix + 'App.js'],
     vendorPrefix = 'node_modules/',
      vendorFiles = [
-        vendorPrefix + 'angular/angular.js',
         vendorPrefix + 'jquery/dist/jquery.js',
+        vendorPrefix + 'angular/angular.js',
         vendorPrefix + 'bootstrap/dist/js/bootstrap.js',
     ],
        vendorCss = [vendorPrefix + 'bootstrap/dist/css/bootstrap.css'];
@@ -29,7 +29,9 @@ var   userPrefix = 'src/',
 
 gulp.task('default', ['build']);
 
-gulp.task('build', ['less', 'minifyApp', 'minifyVendors', 'minifyVendorCss', 'moveStuff']);
+gulp.task('build', ['less', 'minifyApp', 'minifyVendors', 'minifyVendorCss', 'moveStuff'], function() {
+    console.log('-- Build complete. Have fun.');
+});
 
 gulp.task('jshint', function() {
     gulp.src(appFiles)
@@ -66,7 +68,9 @@ gulp.task('less', function() {
         }))
         .pipe(cssmin())
         .pipe(concat('style.min.css'))
-        .pipe(gulp.dest('build/css'))
+        .pipe(gulp.dest('build/css'));
+
+    console.log('-- All files in folder /less minified.');
 });
 
 gulp.task('minifyApp', function() {
@@ -75,24 +79,29 @@ gulp.task('minifyApp', function() {
             single_quotes: true
         }))
         .pipe(uglify())
-        .pipe(gulp.dest('build'))
+        .pipe(gulp.dest('build'));
+
+    var i = 0;
+    appFiles.forEach( function(element) {
+        i++;
+        console.log('** ' + element)
+    });
+    console.log('-- ' + i + ' file(s) were minified to app.js');
 });
 
 gulp.task('minifyVendors', function() {
-    // gulp.src(vendorFiles)
-    //     .pipe(uglify())
-    //     .pipe(concat('vendors.js'))
-    //     .pipe(gulp.dest('.'))
-
-    // gulp.src([angularJS, 'vendors.js'])
-    //     .pipe(concat('vendor.js'))
-    //     .pipe(gulp.dest('build'))
-
     gulp.src(vendorFiles)
         .pipe(ngannotate())
         .pipe(uglify())
         .pipe(concat('vendor.js'))
         .pipe(gulp.dest('build'))
+
+    var i = 0;
+    vendorFiles.forEach( function(element) {
+        i++;
+        console.log('** ' + element);
+    });
+    console.log('-- ' + i + ' file(s) were minified to vendor.js');
 });
 
 gulp.task('minifyVendorCss', function() {
@@ -100,9 +109,18 @@ gulp.task('minifyVendorCss', function() {
         .pipe(concat('vendor.min.css'))
         .pipe(cssmin())
         .pipe(gulp.dest('build/css'))
+
+    var i = 0;
+    vendorCss.forEach( function(element) {
+        i++;
+        console.log('** ' + element);
+    });
+    console.log('-- ' + i + ' file(s) were minified to vendor.min.js');
 });
 
 gulp.task('moveStuff', function() {
     gulp.src([userPrefix + '*.html'])
         .pipe(gulp.dest('build'))
+
+    console.log('-- All HTML-files were copied to build folder')
 });
