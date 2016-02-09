@@ -1,8 +1,9 @@
 // #### Initialize ####
 
+// ### Gulp requirements ###
 var        gulp = require('gulp'),
          uglify = require('gulp-uglify'),
-          ngmin = require('gulp-ng-annotate'),
+     ngannotate = require('gulp-ng-annotate'),
          jshint = require('gulp-jshint'),
          concat = require('gulp-concat'),
          cssmin = require('gulp-cssmin'),
@@ -11,15 +12,17 @@ var        gulp = require('gulp'),
     browserSync = require('browser-sync'),
         stylish = require('jshint-stylish');
 
+// 
+
 var   userPrefix = 'src/',
         appFiles = [userPrefix + 'App.js'],
     vendorPrefix = 'node_modules/',
      vendorFiles = [
+        vendorPrefix + 'angular/angular.js',
         vendorPrefix + 'jquery/dist/jquery.js',
         vendorPrefix + 'bootstrap/dist/js/bootstrap.js',
     ],
-       vendorCss = [vendorPrefix + 'bootstrap/dist/css/bootstrap.css'],
-       angularJS = vendorPrefix + 'angular/angular.min.js';
+       vendorCss = [vendorPrefix + 'bootstrap/dist/css/bootstrap.css'];
 
 
 // #### Task Definitions ####
@@ -68,19 +71,26 @@ gulp.task('less', function() {
 
 gulp.task('minifyApp', function() {
     gulp.src(appFiles)
-        .pipe(ngmin({
+        .pipe(ngannotate({
             single_quotes: true
         }))
+        .pipe(uglify())
         .pipe(gulp.dest('build'))
 });
 
 gulp.task('minifyVendors', function() {
-    gulp.src(vendorFiles)
-        .pipe(uglify())
-        .pipe(concat('vendors.js'))
-        .pipe(gulp.dest('.'))
+    // gulp.src(vendorFiles)
+    //     .pipe(uglify())
+    //     .pipe(concat('vendors.js'))
+    //     .pipe(gulp.dest('.'))
 
-    gulp.src([angularJS, 'vendors.js'])
+    // gulp.src([angularJS, 'vendors.js'])
+    //     .pipe(concat('vendor.js'))
+    //     .pipe(gulp.dest('build'))
+
+    gulp.src(vendorFiles)
+        .pipe(ngannotate())
+        .pipe(uglify())
         .pipe(concat('vendor.js'))
         .pipe(gulp.dest('build'))
 });
