@@ -53,15 +53,14 @@ io.sockets.on('connection', function (socket) {
 			//Keep track of the room in the user object.
 			users[socket.username].channels[room] = room;
 			//Send the room information to the client.
-			// fn(true);
-			// io.sockets.emit('updateusers', room, rooms[room].users, rooms[room].ops);
+			fn(true);
+			//io.sockets.emit('updateusers', room, rooms[room].users, rooms[room].ops);
 			//Update topic
-			// socket.emit('updatetopic', room, rooms[room].topic, socket.username);
-			// io.sockets.emit('servermessage', "join", room, socket.username);
+			//socket.emit('updatetopic', room, rooms[room].topic, socket.username);
+			//io.sockets.emit('servermessage', "join", room, socket.username);
 			io.sockets.emit('roomlist', rooms);
-			console.log('rooms updated', rooms);
 		}
-		
+
 		//If the room isn't locked we set accepted to true.
 		if(rooms[room].locked === false) {
 			accepted = true;
@@ -95,6 +94,7 @@ io.sockets.on('connection', function (socket) {
 			io.sockets.emit('servermessage', "join", room, socket.username);
 		}
 		fn(false, reason);
+
 	});
 
 	// when the client emits 'sendchat', this listens and executes

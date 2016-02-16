@@ -19,9 +19,9 @@ var   userPrefix = 'client',
     vendorPrefix = 'node_modules/',
      vendorFiles = [
         vendorPrefix + 'angular/angular.js',
-        vendorPrefix + 'bootstrap/dist/js/bootstrap.js',
+        vendorPrefix + 'socket.io-client/node_modules/socket.io.js'
     ],
-       vendorCss = [vendorPrefix + 'bootstrap/dist/css/bootstrap.css'];
+       vendorCss = [];
 
 
 // #### Task Definitions ####
