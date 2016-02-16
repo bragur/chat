@@ -9,16 +9,15 @@ var        gulp = require('gulp'),
          cssmin = require('gulp-cssmin'),
            less = require('gulp-less'),
            path = require('path'),
-    browserSync = require('browser-sync'),
-        stylish = require('jshint-stylish');
+        stylish = require('jshint-stylish'),
+          order = require('gulp-order');
 
 // 
 
-var   userPrefix = 'src/',
-        appFiles = [userPrefix + 'App.js'],
+var   userPrefix = 'client',
+        appFiles = userPrefix + '/src/**/*.js',
     vendorPrefix = 'node_modules/',
      vendorFiles = [
-        vendorPrefix + 'jquery/dist/jquery.js',
         vendorPrefix + 'angular/angular.js',
         vendorPrefix + 'bootstrap/dist/js/bootstrap.js',
     ],
@@ -56,6 +55,9 @@ gulp.task('jshint', function() {
             },
         }))
         .pipe(jshint.reporter(stylish))
+    appFiles.forEach(function(element) {
+        console.log(element);
+    });
 });
 
 
@@ -78,15 +80,13 @@ gulp.task('minifyApp', function() {
         .pipe(ngannotate({
             single_quotes: true
         }))
+        .pipe(order([
+            userPrefix + '/src/App.js'
+            ]))
+        .pipe(concat('app.js'))
         .pipe(uglify())
         .pipe(gulp.dest('build'));
-
-    var i = 0;
-    appFiles.forEach( function(element) {
-        i++;
-        console.log('** ' + element)
-    });
-    console.log('-- ' + i + ' file(s) were minified to app.js');
+    console.log('-- All files were minified to app.js');
 });
 
 gulp.task('minifyVendors', function() {
