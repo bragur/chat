@@ -119,7 +119,7 @@ gulp.task('minifyVendorCss', function() {
 });
 
 gulp.task('moveStuff', function() {
-    gulp.src([userPrefix + '*.html'])
+    gulp.src([userPrefix + '/src/*.html'])
         .pipe(gulp.dest('build'))
 
     console.log('-- All HTML-files were copied to build folder')
