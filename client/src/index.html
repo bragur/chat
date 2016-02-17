@@ -8,7 +8,9 @@
 </head>
 
 <body ng-app="Chatroom">
-    <div ng-controller="LoginController" ng-hide="logonUser === ''">
+    <div ng-controller="LoginController">
+    	<input type="text" ng-model="username" />
+    	The username is {{username}}
     </div>
 
     <script src="vendor.js"></script>

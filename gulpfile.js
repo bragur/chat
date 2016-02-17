@@ -28,7 +28,7 @@ var   userPrefix = 'client',
 
 gulp.task('default', ['build']);
 
-gulp.task('build', ['less', 'minifyApp', 'minifyVendors', 'minifyVendorCss', 'moveStuff'], function() {
+gulp.task('build', ['jshint', 'less', 'minifyApp', 'minifyVendors', 'minifyVendorCss', 'moveStuff'], function() {
     console.log('-- Build complete. Have fun.');
 });
 
@@ -55,9 +55,6 @@ gulp.task('jshint', function() {
             },
         }))
         .pipe(jshint.reporter(stylish))
-    appFiles.forEach(function(element) {
-        console.log(element);
-    });
 });
 
 
