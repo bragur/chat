@@ -19,7 +19,8 @@ var   userPrefix = 'client',
     vendorPrefix = 'node_modules/',
      vendorFiles = [
         vendorPrefix + 'angular/angular.js',
-        vendorPrefix + 'socket.io-client/node_modules/socket.io.js'
+        vendorPrefix + 'socket.io-client/node_modules/socket.io.js',
+        vendorPrefix + 'angular-ui-router/release/angular-ui-router.js'
     ],
        vendorCss = [];
 
@@ -64,7 +65,7 @@ gulp.task('jshint', function() {
 // ### Build dependencies
 
 gulp.task('less', function() {
-    gulp.src(userPrefix + 'less/**/*.*')
+    gulp.src(userPrefix + '/src/less/**/*.*')
         .pipe(less({
             paths: [path.join(__dirname, 'less', 'includes')]
         }))
@@ -83,7 +84,7 @@ gulp.task('minifyApp', function() {
         .pipe(order([
             userPrefix + '/src/App.js'
             ]))
-        .pipe(concat('app.js'))
+        .pipe(concat('App.js'))
         .pipe(uglify())
         .pipe(gulp.dest('build'));
     console.log('-- All files were minified to app.js');
@@ -119,7 +120,7 @@ gulp.task('minifyVendorCss', function() {
 });
 
 gulp.task('moveStuff', function() {
-    gulp.src([userPrefix + '/src/*.html'])
+    gulp.src([userPrefix + '/src/**/*.html'])
         .pipe(gulp.dest('build'))
 
     console.log('-- All HTML-files were copied to build folder')
