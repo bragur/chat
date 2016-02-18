@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Chatroom').controller('LoginController', ['$scope', 'SocketService', function($scope, SocketService){
+angular.module('Chatroom').controller('LoginController', ['$scope', '$rootScope', '$location', 'SocketService', function($scope, $rootScope, $location, SocketService){
 	
 	$scope.nickName = "";
 
@@ -10,6 +10,9 @@ angular.module('Chatroom').controller('LoginController', ['$scope', 'SocketServi
 
 			if (available) {
 				console.log('This nickName is available!');
+				$rootScope.nick = nickName;
+				$location.path('/lobby');
+
 			} else {
 				console.log('This nickName is sadly not available...');
 			}
