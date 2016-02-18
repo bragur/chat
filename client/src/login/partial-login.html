@@ -1,11 +1,22 @@
 <!-- partial-login.html -->
 
 <div class="jumbotron text-center">
-    <h1>The Homey Page</h1>
-    <p>This page demonstrates <span class="text-danger">nested</span> views.</p>  
+	<h1>Super awesome chat app!</h1>
+	<p>The app that makes you <span class="text-danger">FEEL</span> slightly better...</p>  
 
-    <a ui-sref=".list" class="btn btn-primary">List</a>
-    <a ui-sref=".paragraph" class="btn btn-danger">Paragraph</a>
+	<a ui-sref=".list" class="btn btn-primary">List</a>
+	<a ui-sref=".paragraph" class="btn btn-danger">Paragraph</a>
+	<form name="loginForm">
+    	<label>
+			NickName:
+			<input type="text" name="nick" ng-model="nickName" required>
+		</label>
+		<div role="alert">
+			<span class="error" ng-show="loginForm.nick.$error.required">
+				Nick is required!</span>
+			{{nickName}}
+		</div>
+	</form>
 </div>
 
 <div ui-view></div>
