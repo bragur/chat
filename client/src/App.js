@@ -11,6 +11,7 @@ angular.module('Chatroom').config(function($stateProvider, $urlRouterProvider) {
 		.state('login', {
 			url: '/login',
 			templateUrl: 'login/partial-login.html',
+			controller: 'LoginController'
 		})
 
 		.state('login.list', {

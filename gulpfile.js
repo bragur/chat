@@ -19,7 +19,7 @@ var   userPrefix = 'client',
     vendorPrefix = 'node_modules/',
      vendorFiles = [
         vendorPrefix + 'angular/angular.js',
-        vendorPrefix + 'socket.io-client/node_modules/socket.io.js',
+        //vendorPrefix + 'socket.io-client/node_modules/socket.io.js',
         vendorPrefix + 'angular-ui-router/release/angular-ui-router.js'
     ],
        vendorCss = [];

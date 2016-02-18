@@ -4,12 +4,13 @@
 	<h1>Super awesome chat app!</h1>
 	<p>The app that makes you <span class="text-danger">FEEL</span> slightly better...</p>  
 
-	<a ui-sref=".list" class="btn btn-primary">List</a>
-	<a ui-sref=".paragraph" class="btn btn-danger">Paragraph</a>
+	<!--<a ui-sref=".list" class="btn btn-primary">List</a>
+	<a ui-sref=".paragraph" class="btn btn-danger">Paragraph</a>-->
 	<form name="loginForm">
     	<label>
 			NickName:
 			<input type="text" name="nick" ng-model="nickName" required>
+			<input type="button" ng-click="validateNick(nickName)">Sign in!</button>
 		</label>
 		<div role="alert">
 			<span class="error" ng-show="loginForm.nick.$error.required">
