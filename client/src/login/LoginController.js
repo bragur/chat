@@ -1,5 +1,7 @@
 'use strict';
 
 angular.module('Chatroom').controller('LoginController', ['$scope', function($scope){
-	$scope.username = 'prufa';
+	$scope.tryUser = function() {
+		console.log($scope.username);
+	};
 }]);
