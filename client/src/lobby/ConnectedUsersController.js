@@ -3,6 +3,8 @@
 angular.module("Chatroom").controller("ConnectedUsersController", 
 function($scope, SocketService) {
 
+	console.log("Im in the ConnectedUsersController");
+
 	$scope.users = [];
 	SocketService.emit("users");
 
