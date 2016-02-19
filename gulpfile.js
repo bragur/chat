@@ -116,8 +116,13 @@ gulp.task('minifyVendorCss', function() {
 });
 
 gulp.task('moveStuff', function() {
-    gulp.src([userPrefix + '/src/**/*.html'])
+    gulp.src([
+        userPrefix + '/src/**/*.html',
+        ])
         .pipe(gulp.dest('build'))
+
+    gulp.src(userPrefix + '/src/img/**/*.*')
+        .pipe(gulp.dest('build/img'))
 
     console.log('-- All HTML-files were copied to build folder')
 });
