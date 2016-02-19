@@ -1,0 +1,17 @@
+<!-- lobby.html -->
+
+<div class="jumbotron text-center">
+	<h1>Welcome to the lobby {{nick}}!</h1> 
+</div>
+
+<div class="col-sm-3">
+	<div ui-view="roomlist"></div>
+</div>
+
+<div class="col-sm-3">
+	<div ui-view="connectedUsers"></div>
+</div>
+
+<div class="col-sm-6">
+	<div ui-view="chatroom"></div>
+</div>

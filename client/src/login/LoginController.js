@@ -8,7 +8,7 @@ angular.module('Chatroom').controller('LoginController', ['$scope', '$rootScope'
 	$scope.validateNick = function validateNick(nickName) {
 		console.log(nickName);
 
-		if (nickName.trim() != '' && nickName != undefined) {
+		if (nickName.trim() !== '' && nickName !== undefined) {
 			SocketService.emit('adduser', nickName, function(available) {
 
 				if (available) {

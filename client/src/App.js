@@ -29,8 +29,22 @@ angular.module('Chatroom').config(function($stateProvider, $urlRouterProvider) {
 
 		.state('lobby', {
 			url: '/lobby',
-			templateUrl: 'lobby/partial-lobby.html',
-			controller: 'LobbyController'
+			//templateUrl: 'lobby/lobby.html',
+			//controller: 'LobbyController',
+			views: {
+
+				// The main template will be placed here.
+				'': { 
+					templateUrl: 'lobby/lobby.html',
+					controller: 'LobbyController'
+				},
+
+				'roomlist@lobby': {
+					templateUrl: 'lobby/partial-lobby-roomList.html',
+					controller: 'LobbyController'
+				}
+
+			}
 		});
 
 });

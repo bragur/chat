@@ -19,7 +19,7 @@ angular.module("Chatroom").factory("SocketService", function($rootScope, BACKEND
             callback.apply(socket, args);
           }
         });
-      })
+      });
     }
   };
 }); 
