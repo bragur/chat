@@ -20,9 +20,10 @@ var   userPrefix = 'client',
      vendorFiles = [
         // vendorPrefix + 'socket.io-client/node_modules/socket.io.js',
         vendorPrefix + 'angular/angular.js',
-        vendorPrefix + 'angular-ui-router/release/angular-ui-router.js'
+        vendorPrefix + 'angular-ui-router/release/angular-ui-router.js',
+        vendorPrefix + 'angular-ui-bootstrap/dist/ui-bootstrap-tpls.js'
     ],
-       vendorCss = [];
+       vendorCss = [vendorPrefix + 'bootstrap/dist/css/bootstrap.min.css'];
 
 
 // #### Task Definitions ####
@@ -119,6 +120,8 @@ gulp.task('minifyVendorCss', function() {
 gulp.task('moveStuff', function() {
     gulp.src([userPrefix + '/src/**/*.html'])
         .pipe(gulp.dest('build'))
+    gulp.src(userPrefix + '/src/img/**/*.*')
+        .pipe(gulp.dest('build/img'))
 
     console.log('-- All HTML-files were copied to build folder')
 });

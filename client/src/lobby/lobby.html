@@ -4,14 +4,15 @@
 	<h1>Welcome to the lobby {{nick}}!</h1> 
 </div>
 
-<div class="col-sm-3">
-	<div ui-view="roomlist"></div>
+<div class="row">
+	<div class="col-md-3">
+		<div ui-view="roomlist"></div>
+	</div>
+	<div class="col-md-6">
+		<div ui-view="chatroom"></div>
+	</div>
+	<div class="col-md-3">
+		<div ui-view="connectedUsers"></div>
+	</div>
 </div>
 
-<div class="col-sm-3">
-	<div ui-view="connectedUsers"></div>
-</div>
-
-<div class="col-sm-6">
-	<div ui-view="chatroom"></div>
-</div>

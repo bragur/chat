@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Chatroom', ['ui.router']);
+angular.module('Chatroom', ['ui.bootstrap', 'ui.router']);
 
 angular.module('Chatroom').config(function($stateProvider, $urlRouterProvider) {
 
@@ -14,21 +14,8 @@ angular.module('Chatroom').config(function($stateProvider, $urlRouterProvider) {
 			controller: 'LoginController'
 		})
 
-		.state('login.list', {
-			url: '/list',
-			templateUrl: 'login/partial-login-list.html',
-			controller: function($scope) {
-				$scope.channels = ['UltraChannel', 'BestChannel', 'HomiePlace'];
-			}
-		})
-
-		.state('login.paragraph', {
-			url: '/paragraph',
-			template: 'This is awesome'
-		})
-
-		.state('lobby', {
-			url: '/lobby',
+		.state('chatroom', {
+			url: '/chatroom/:ChatroomName',
 			//templateUrl: 'lobby/lobby.html',
 			//controller: 'LobbyController',
 			views: {
@@ -39,19 +26,19 @@ angular.module('Chatroom').config(function($stateProvider, $urlRouterProvider) {
 					controller: 'LobbyController'
 				},
 
-				'roomlist@lobby': {
+				'roomlist@chatroom': {
 					templateUrl: 'lobby/partial-lobby-roomList.html',
 					controller: 'RoomListController'
 				},
 
-				'connectedUsers@lobby': {
+				'connectedUsers@chatroom': {
 					templateUrl: 'lobby/partial-lobby-connectedUsers.html',
 					controller: 'ConnectedUsersController'
 				},
 
-				'chatroom@lobby': {
+				'chatroom@chatroom': {
 					templateUrl: 'chatroom/partial-chatRoom.html',
-					controller: 'ChatRoomController'
+					controller: 'ChatRoomController',
 				}
 
 			}
