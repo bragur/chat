@@ -10,12 +10,11 @@
     	<label>
 			NickName:
 			<input type="text" name="nick" ng-model="nickName" required>
-			<input type="button" ng-click="validateNick(nickName)">Sign in!</button>
+			<button type="button" ng-click="validateNick(nickName)">Sign in!</button>
 		</label>
 		<div role="alert">
-			<span class="error" ng-show="loginForm.nick.$error.required">
-				Nick is required!</span>
-			{{nickName}}
+			<span class="error" ng-show="error == -2">Nickname is required..</span>
+			<span class="error" ng-show="error == -1">Nickname is already taken. Choose another one!</span>
 		</div>
 	</form>
 </div>
