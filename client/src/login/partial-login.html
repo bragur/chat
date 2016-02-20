@@ -7,11 +7,12 @@
 	<!--<a ui-sref=".list" class="btn btn-primary">List</a>
 	<a ui-sref=".paragraph" class="btn btn-danger">Paragraph</a>-->
 	<form name="loginForm">
-    	<label>
-			NickName:
-			<input type="text" name="nick" ng-model="nickName" required>
-			<button type="button" ng-click="validateNick(nickName)">Sign in!</button>
-		</label>
+		<div class="input-group">
+			<input class="form-control" type="text" name="nick" ng-model="nickName" placeholder="Choose nickname" required="required">
+			<span class="input-group-btn">
+				<button  class="btn btn-default" ng-click="validateNick(nickName)">Sign in!</button>
+			</span>
+		</div>
 		<div role="alert">
 			<span class="error" ng-show="error == -2">Nickname is required..</span>
 			<span class="error" ng-show="error == -1">Nickname is already taken. Choose another one!</span>
