@@ -6,7 +6,7 @@
 </uib-tabset-->
 <h2>{{chatroomName}}</h2>
 <h3>{{chatroomTopic}}</h3>
-<ul id="chatspace" class="list-unstyled">
+<ul id="chatspace" class="list-unstyled" scroll-glue>
 	<li ng-repeat="(key, value) in msgHistory">[{{value['timestamp']}}] {{value['message']}}</li>
 </ul>
 <form name="message">

@@ -21,7 +21,8 @@ var   userPrefix = 'client',
         // vendorPrefix + 'socket.io-client/node_modules/socket.io.js',
         vendorPrefix + 'angular/angular.js',
         vendorPrefix + 'angular-ui-router/release/angular-ui-router.js',
-        vendorPrefix + 'angular-ui-bootstrap/dist/ui-bootstrap-tpls.js'
+        vendorPrefix + 'angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
+        vendorPrefix + 'angularjs-scroll-glue/src/scrollglue.js'
     ],
        vendorCss = [vendorPrefix + 'bootstrap/dist/css/bootstrap.min.css'];
 
