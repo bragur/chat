@@ -22,6 +22,7 @@
     "angular-moment": "^1.0.0-beta.4",
     "angular-ui-bootstrap": "^1.1.2",
     "angular-ui-router": "~0.2.18",
+    "angularjs-scroll-glue": "^2.0.4",
     "bootstrap": "^3.3.6",
     "gulp": "^3.9.0",
     "gulp-cli": "^1.2.0",
