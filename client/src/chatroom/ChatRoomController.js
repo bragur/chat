@@ -77,5 +77,6 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 			console.log("messagehistory is: ");
 			console.log(messageHistory);
 			$scope.msgHistory = messageHistory;
+			$scope.chatMsg = "";
 	});
 });
