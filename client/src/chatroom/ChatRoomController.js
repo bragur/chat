@@ -61,6 +61,7 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 		console.log(data.msg);
 
 		SocketService.emit('sendmsg', data);
+		$scope.chatMsg = "";
 
 	};
 
