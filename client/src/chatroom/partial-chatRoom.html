@@ -1,14 +1,12 @@
-<h1>This is the chat area!</h1>
-
-<!--uib-tabset>
-	<uib-tab heading="Static-heading">Static content</uib-tab>
-	<uib-tab heading="Static heading 2">Static conteen</uib-tab>
-</uib-tabset-->
 <h1>#{{chatroomName}} <small>{{chatroomTopic}}</small></h1>
 <ul id="chatspace" class="list-unstyled" scroll-glue>
 	<li ng-repeat="(key, value) in msgHistory"><span class="timestamp">[{{value['timestamp'] | amUtc | amLocal | amDateFormat:'HH:mm:ss'}}]</span><span class="nick">{{value['nick']}}:</span> {{value['message']}}</li>
 </ul>
 <form name="message">
-	<input type="text" name="chatMessage" ng-model="chatMsg">
-	<button type="button" ng-click="sendMessage(chatMsg)">Send</button>
+	<div class="input-group">
+	    <input type="text" class="form-control" name="chatMessage" ng-model="chatMsg" placeholder="Type...">
+	    <span class="input-group-btn">
+	        <button class="btn btn-default" type="button" ng-click="sendMessage(chatMsg)">Send</button>
+	      </span>
+	</div>
 </form>
