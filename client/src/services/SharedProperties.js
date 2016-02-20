@@ -20,6 +20,9 @@ angular.module('Chatroom').service('SharedProperties', function() {
 		},
 		getCurrentRoom: function getCurrentRoom() {
 			return currentRoom;
+		},
+		getRoom: function getRoom(room) {
+			return rooms[room];
 		}
 	};
 });

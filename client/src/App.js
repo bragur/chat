@@ -33,7 +33,8 @@ angular.module('Chatroom').config(function($stateProvider, $urlRouterProvider) {
 
 				'connectedUsers@chatroom': {
 					templateUrl: 'lobby/partial-lobby-connectedUsers.html',
-					controller: 'ConnectedUsersController'
+					//controller: 'ConnectedUsersController'
+					controller: 'ChatRoomController'
 				},
 
 				'chatroom@chatroom': {

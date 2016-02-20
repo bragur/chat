@@ -26,15 +26,15 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 			});*/
 
 			SocketService.on('updatetopic', function (room, topic, username) {
-				console.log(room);
-				console.log(topic);
-				console.log(username);
+				if (room === $scope.chatroomName) {
+					console.log(username + " updated topic in " + room + " to: " + topic);
+				}
 			});
 
 			SocketService.on('servermessage', function (status, room, username) {
-				console.log(status);
-				console.log(room);
-				console.log(username);
+				if (room === $scope.chatroomName) {
+					console.log(username + " " + status + " " + room);
+				}
 			});
 
 		} else {
@@ -56,9 +56,7 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 			msg: mess
 		};
 
-		console.log("Trying to send a message: " + mess);
-		console.log(data.roomName);
-		console.log(data.msg);
+		console.log("Sending msg to " + data.roomName + ": " + mess);
 
 		SocketService.emit('sendmsg', data);
 		$scope.chatMsg = "";
@@ -66,18 +64,25 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 	};
 
 	SocketService.on('updatechat', function (roomName, messageHistory) {
-		// If successful update the room status in the SharedProperties service
-		console.log("messagehistory is: ");
-		console.log(messageHistory);
-		$scope.msgHistory = messageHistory;
+		if (roomName === $scope.chatroomName) {
+			console.log("messagehistory is: ");
+			console.log(messageHistory);
+			$scope.msgHistory = messageHistory;
+		}
 	});
 
 	SocketService.on('updateusers', function (room, users, ops) {
-		$scope.room = room;
-		$scope.users = users;
-		$scope.ops = ops;
-		console.log(users);
-		console.log(ops);
-		console.log(room);
+		var chatroom = SharedProperties.getRoom(room);
+
+		if (room === $scope.chatroomName) {
+			$scope.users = chatroom.users;
+			$scope.ops = chatroom.ops;
+			var updatedUsers = {
+				Users: $scope.users,
+				Ops: $scope.ops,
+				Room: room
+			};
+			console.log(updatedUsers);
+		}
 	});
 });
