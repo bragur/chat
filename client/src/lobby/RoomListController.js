@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module("Chatroom").controller("RoomListController", 
-function($scope, SocketService, SharedProperties) {
+function($scope, $location, SocketService, SharedProperties) {
+
+	$scope.newRoom = "";
 
 	SocketService.emit('rooms');
 
@@ -11,4 +13,11 @@ function($scope, SocketService, SharedProperties) {
 		//console.log(SharedProperties.getRooms());
 
 	});
+
+	$scope.createRoom = function createRoom(newRoom) {
+		console.log("In createRoom with " + newRoom);
+		if (newRoom !== '') {
+			$location.path('/chatroom/' + newRoom);
+		}
+	};
 });

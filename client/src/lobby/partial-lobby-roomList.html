@@ -1,10 +1,11 @@
 <!-- partial-lobby-roomList.html -->
 
-<!--button type="button" value="Create room" ng-click="addRoom()"></button-->
+
+<input type="text" name="newRoom" ng-model="newRoom" required>
+<button type="button" ng-click="createRoom(newRoom)">Create room</button>
+
+		<!--button type="button" value="Create room" ng-click="addRoom()"></button-->
 <!--button uib-popover-template="dynamicPopover.templateUrl" popover-title="{{dynamicPopover.title}}" type="button" class="btn btn-default">Popover With Template</button-->
 <ul>
-    <!-- ng-repeat="(name, room) in rooms">{{ name }}</li> -->
-    <!--a ui-sref="lobby" class="btn btn-danger" ng-repeat="(name, room) in rooms"> {{name}} </a-->
-
-    <a ui-sref="chatroom({ChatroomName: name})" class="btn btn-danger" ng-repeat="(name, room) in rooms"> {{name}} </a>
+    <a ui-sref="chatroom({ChatroomName: name})" class="btn btn-danger" ng-repeat="(name, room) in rooms"> {{name}} </a><br/>
 </ul>

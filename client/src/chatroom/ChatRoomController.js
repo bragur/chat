@@ -18,14 +18,6 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 		console.log("Attempting to join " + $scope.chatroomName);
 		if (allowed) {
 			// Updated info on recently joined room
-			SocketService.on('updateusers', function (room, users, ops) {
-				$scope.room = room;
-				$scope.users = users;
-				$scope.ops = ops;
-				console.log(users);
-				console.log(ops);
-				console.log(room);
-			});
 
 			// Updated messageHistory
 			/*SocketService.on('updatechat', function (room, messageHistory) {
@@ -73,10 +65,18 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 	};
 
 	SocketService.on('updatechat', function (roomName, messageHistory) {
-			// If successful update the room status in the SharedProperties service
-			console.log("messagehistory is: ");
-			console.log(messageHistory);
-			$scope.msgHistory = messageHistory;
-			$scope.chatMsg = "";
+		// If successful update the room status in the SharedProperties service
+		console.log("messagehistory is: ");
+		console.log(messageHistory);
+		$scope.msgHistory = messageHistory;
+	});
+
+	SocketService.on('updateusers', function (room, users, ops) {
+		$scope.room = room;
+		$scope.users = users;
+		$scope.ops = ops;
+		console.log(users);
+		console.log(ops);
+		console.log(room);
 	});
 });
