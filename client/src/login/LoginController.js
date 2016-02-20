@@ -14,8 +14,11 @@ angular.module('Chatroom').controller('LoginController', ['$scope', '$rootScope'
 				if (available) {
 					console.log('This nickName is available!');
 					$rootScope.nick = nickName;
-					$location.path('/chatroom/lobby');
+					//$location.path('/chatroom/lobby');
+
 					$scope.error = 0;
+
+					$location.path('/chatroom/lobby');
 
 				} else {
 					console.log('This nickName is sadly not available...');

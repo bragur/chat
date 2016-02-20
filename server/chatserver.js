@@ -102,6 +102,8 @@ io.sockets.on('connection', function (socket) {
 		
 		var userAllowed = false;
 
+		console.log("userAllowed: " + userAllowed);
+
 		//Check if user is allowed to send message.
 		if(rooms[data.roomName].users[socket.username] !== undefined) {
 			userAllowed = true;

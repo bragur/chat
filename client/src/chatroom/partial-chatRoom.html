@@ -6,4 +6,10 @@
 </uib-tabset-->
 <h2>{{chatroomName}}</h2>
 <h3>{{chatroomTopic}}</h3>
-<ul id="chatspace"></ul>
+<ul id="chatspace" class="list-unstyled">
+	<li ng-repeat="(key, value) in msgHistory">[{{value['timestamp']}}] {{value['message']}}</li>
+</ul>
+<form name="message">
+	<input type="text" name="chatMessage" ng-model="chatMsg">
+	<button type="button" ng-click="sendMessage(chatMsg)">Send</button>
+</form>
