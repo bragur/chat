@@ -22,7 +22,9 @@ var   userPrefix = 'client',
         vendorPrefix + 'angular/angular.js',
         vendorPrefix + 'angular-ui-router/release/angular-ui-router.js',
         vendorPrefix + 'angular-ui-bootstrap/dist/ui-bootstrap-tpls.js',
-        vendorPrefix + 'angularjs-scroll-glue/src/scrollglue.js'
+        vendorPrefix + 'angularjs-scroll-glue/src/scrollglue.js',
+        vendorPrefix + 'moment/moment.js',
+        vendorPrefix + 'angular-moment/angular-moment.js',
     ],
        vendorCss = [vendorPrefix + 'bootstrap/dist/css/bootstrap.min.css'];
 

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('Chatroom', ['ui.bootstrap', 'ui.router', 'luegg.directives']);
+angular.module('Chatroom', ['ui.bootstrap', 'ui.router', 'luegg.directives', 'angularMoment']);
 
 angular.module('Chatroom').config(function($stateProvider, $urlRouterProvider) {
 
