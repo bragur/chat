@@ -66,6 +66,7 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 		if (room === $scope.chatroomName) {
 			$scope.users = users; //chatroom.users;
 			$scope.ops = ops; //chatroom.ops;
+			SharedProperties.setCurrRoomUsers(users);
 			var updatedUsers = {
 				Users: $scope.users,
 				Ops: $scope.ops,
