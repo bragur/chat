@@ -15,9 +15,21 @@ function($scope, $location, SocketService, SharedProperties) {
 	});
 
 	$scope.createRoom = function createRoom(newRoom) {
-		console.log("In createRoom with " + newRoom);
-		if (newRoom !== '') {
-			$location.path('/chatroom/' + newRoom);
+
+		var currRoom = SharedProperties.getCurrentRoom();
+		if (newRoom !== currRoom) {
+			SocketService.emit('partroom', SharedProperties.getCurrentRoom());
+			console.log("Im leaving:");
+			console.log(SharedProperties.getCurrentRoom());
+
+			console.log("In createRoom with " + newRoom);
+			if (newRoom !== '') {
+				$location.path('/chatroom/' + newRoom);
+			}
 		}
 	};
+
+	$scope.$on("$destroy", function(){
+        SocketService.off("roomlist", function(success){});
+    });
 });

@@ -5,5 +5,6 @@
 
 <button uib-popover-template="'/lobby/partial-create-room.html'" popover-title="Create New Room" popover-trigger="outsideClick" type="button" class="btn btn-default">Create new Room</button>
 <ul>
-    <a ui-sref="chatroom({ChatroomName: name})" class="btn btn-danger" ng-repeat="(name, room) in rooms"> {{name}} </a><br/>
+    <!--a ui-sref="chatroom({ChatroomName: name})" class="btn btn-danger" ng-repeat="(name, room) in rooms"> {{name}} </a><br/-->
+    <a class="btn btn-danger" ng-repeat="(name, room) in rooms" ng-click="createRoom(name)"> {{name}} </a><br/>
 </ul>

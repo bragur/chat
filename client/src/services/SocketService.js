@@ -21,6 +21,16 @@ angular.module('Chatroom').factory('SocketService', function($rootScope, BACKEND
                     }
                 });
             });
+        },
+        off: function(eventName, callback) {
+            socket.removeAllListeners(eventName, function() {
+                var args = arguments;
+                $rootScope.$apply(function() {
+                    if (callback) {
+                        callback.apply(socket, args);
+                    }
+                });
+            });
         }
     };
 });
