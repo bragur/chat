@@ -2,5 +2,5 @@
 
 <ul>
     <!-- ng-repeat="(name, room) in rooms">{{ name }}</li> -->
-    <a ui-sref="login" class="btn btn-danger" ng-repeat="user in users"> {{user}} </a><br>
+    <a ng-click="privateMsg(user)" class="btn btn-danger" ng-repeat="user in users"> {{user}} </a><br>
 </ul>

@@ -5,7 +5,7 @@ angular.module("Chatroom").controller("ChatRoomController",
 
         console.log("Im in the ChatRoomController");
 
-        //$scope.chatMsg = "";
+        $scope.chatMsg = "";
 
         $scope.chatroomName = $stateParams.ChatroomName;
 
@@ -30,6 +30,11 @@ angular.module("Chatroom").controller("ChatRoomController",
             $scope.$apply();
         }, 200);
 
+        $scope.privateMsg = function privateMsg(user) {
+			console.log("Want to send private msg to " + user);
+			$scope.chatMsg = 'bob';
+		};
+
         $scope.sendMessage = function sendMessage(mess) {
 
             if (mess.charAt(0) !== '/') {
@@ -43,11 +48,9 @@ angular.module("Chatroom").controller("ChatRoomController",
                 SocketService.emit('sendmsg', data);
             } else {
                 var action = mess.split(" ")[0].substring(1);
+                var actions = ['settopic', 'privatemsg', 'ban', 'unban', 'op', 'deop', 'kick'];
                 var line = mess.substring(action.length + 2);
                 var params = line.split(" ");
-                // console.log("Action: " + action + ", params: " + line);
-                // console.log(params);
-
                 var obj = {};
 
                 if (action === 'topic') {
@@ -56,6 +59,12 @@ angular.module("Chatroom").controller("ChatRoomController",
                         topic: line,
                         room: $scope.chatroomName
                     };
+                } else if (action === 'msg') {
+                	action = 'privatemsg';
+                	obj = {
+                		nick: params[0],
+                		message: line.substring(params[0].length + 1)
+                	};
                 } else {
                     obj = {
                         user: params[0],
@@ -63,10 +72,10 @@ angular.module("Chatroom").controller("ChatRoomController",
                     };
                 }
 
-                if (obj['room'].toString().length > 0) {
-                    SocketService.emit(action, obj, function(success) {
-                        console.log(action + " successful!");
-                    });
+                if (actions.indexOf(action) > -1) {
+                	SocketService.emit(action, obj, function(success) {
+                    console.log(action + " successful!");
+                });
                 }
             }
 

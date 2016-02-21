@@ -40,6 +40,11 @@ angular.module('Chatroom').config(function($stateProvider, $urlRouterProvider) {
 				'chatroom@chatroom': {
 					templateUrl: 'chatroom/partial-chatRoom.html',
 					controller: 'ChatRoomController',
+				},
+
+				'privateMsg@chatroom': {
+					templateUrl: 'privatemsg/partial-privatemsg.html',
+					controller: 'PrivateMessageController',
 				}
 
 			}
