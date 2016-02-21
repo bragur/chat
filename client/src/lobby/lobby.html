@@ -4,12 +4,12 @@
 	<div class="col-md-2">
 		<div ui-view="roomlist"></div>
 	</div>
-	<div class="col-md-8">
+	<div class="col-md-8" ng-controller="TabsController">
 		<uib-tabset>
-			<uib-tab heading="Channel">
+			<uib-tab heading="Channel" select="chosen(0)">
 				<div ui-view="chatroom"><uib-tab-heading>{{chatroom.chatroomName}}</uib-tab-heading></div>
 			</uib-tab>
-			<uib-tab heading="Private Messages">
+			<uib-tab heading="{{msgHeader}}" select="chosen(1)">
 				<div ui-view="privateMsg"></div>
 			</uib-tab>
 		</uib-tabset>
