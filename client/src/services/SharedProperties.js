@@ -3,7 +3,11 @@
 angular.module('Chatroom').service('SharedProperties', function() {
 	var rooms;
 
-	var currentRoom = 'lobby';
+	var nick;
+
+	var currentRoom;
+
+	var currentRoomUsers;
 
 	return {
 		getRooms: function getRooms() {
@@ -18,11 +22,26 @@ angular.module('Chatroom').service('SharedProperties', function() {
 		getRoomMsgHistory: function getRoomMsgHistory(room) {
 			return rooms[room].messageHistory;
 		},
+		setCurrentRoom: function setCurrentRoom(room) {
+			currentRoom = room;
+		},
 		getCurrentRoom: function getCurrentRoom() {
 			return currentRoom;
 		},
 		getRoom: function getRoom(room) {
 			return rooms[room];
+		},
+		getNick: function getNick() {
+			return nick;
+		},
+		setNick: function setNick(nickName) {
+			nick = nickName;
+		},
+		getCurrRoomUsers: function getCurrRoomUsers() {
+			return currentRoomUsers;
+		},
+		setCurrRoomUsers: function setCurrRoomUsers(users) {
+			currentRoomUsers = users;
 		}
 	};
 });

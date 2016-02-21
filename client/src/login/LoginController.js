@@ -1,6 +1,7 @@
 'use strict';
 
-angular.module('Chatroom').controller('LoginController', ['$scope', '$rootScope', '$location', 'SocketService', function($scope, $rootScope, $location, SocketService){
+angular.module('Chatroom').controller('LoginController',
+function($scope, $rootScope, $location, SocketService, SharedProperties){
 	
 	$scope.nickName = "";
 	$scope.error = 0;
@@ -14,6 +15,7 @@ angular.module('Chatroom').controller('LoginController', ['$scope', '$rootScope'
 				if (available) {
 					console.log('This nickName is available!');
 					$rootScope.nick = nickName;
+					SharedProperties.setNick(nickName);
 					//$location.path('/chatroom/lobby');
 
 					$scope.error = 0;
@@ -32,4 +34,4 @@ angular.module('Chatroom').controller('LoginController', ['$scope', '$rootScope'
 		}
 	};
 
-}]);
+});

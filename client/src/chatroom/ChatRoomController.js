@@ -24,18 +24,7 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 				$scope.msgHistory = messageHistory;
 				console.log(messageHistory);
 			});*/
-
-			SocketService.on('updatetopic', function (room, topic, username) {
-				if (room === $scope.chatroomName) {
-					console.log(username + " updated topic in " + room + " to: " + topic);
-				}
-			});
-
-			SocketService.on('servermessage', function (status, room, username) {
-				if (room === $scope.chatroomName) {
-					console.log(username + " " + status + " " + room);
-				}
-			});
+			SharedProperties.setCurrentRoom($scope.chatroomName);
 
 		} else {
 			console.log("Not allowed to enter because " + reason);
@@ -72,11 +61,11 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 	});
 
 	SocketService.on('updateusers', function (room, users, ops) {
-		var chatroom = SharedProperties.getRoom(room);
+		//var chatroom = SharedProperties.getRoom(room);
 
 		if (room === $scope.chatroomName) {
-			$scope.users = chatroom.users;
-			$scope.ops = chatroom.ops;
+			$scope.users = users; //chatroom.users;
+			$scope.ops = ops; //chatroom.ops;
 			var updatedUsers = {
 				Users: $scope.users,
 				Ops: $scope.ops,
@@ -85,4 +74,23 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 			console.log(updatedUsers);
 		}
 	});
+
+	SocketService.on('updatetopic', function (room, topic, username) {
+		if (room === $scope.chatroomName && username === SharedProperties.getNick()) {
+			console.log(username + " updated topic in " + room + " to: " + topic);
+		}
+	});
+
+	SocketService.on('servermessage', function (status, room, username) {
+		if (room === $scope.chatroomName && username === SharedProperties.getNick()) {
+			console.log(username + " " + status + " " + room);
+		}
+	});
+
+	$scope.$on("$destroy", function(){
+        SocketService.off("updatechat", function(success){});
+        SocketService.off("updateusers", function(success){});
+        SocketService.off("updatetopic", function(success){});
+        SocketService.off("servermessage", function(success){});
+    });
 });

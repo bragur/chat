@@ -7,5 +7,6 @@
 		<!--button type="button" value="Create room" ng-click="addRoom()"></button-->
 <!--button uib-popover-template="dynamicPopover.templateUrl" popover-title="{{dynamicPopover.title}}" type="button" class="btn btn-default">Popover With Template</button-->
 <ul>
-    <a ui-sref="chatroom({ChatroomName: name})" class="btn btn-danger" ng-repeat="(name, room) in rooms"> {{name}} </a><br/>
+    <!--a ui-sref="chatroom({ChatroomName: name})" class="btn btn-danger" ng-repeat="(name, room) in rooms"> {{name}} </a><br/-->
+    <a class="btn btn-danger" ng-repeat="(name, room) in rooms" ng-click="createRoom(name)"> {{name}} </a><br/>
 </ul>

@@ -13,4 +13,8 @@ function($scope, SocketService) {
 		$scope.users = users;
 	});
 
+	$scope.$on("$destroy", function(){
+        SocketService.off("userlist", function(success){});
+    });
+
 });
