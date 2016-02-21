@@ -1,0 +1,11 @@
+<ul class="chatspace" class="list-unstyled" scroll-glue>
+	<li ng-repeat="(key, value) in msgHistory"><span class="timestamp">[{{value['timestamp'] | amUtc | amLocal | amDateFormat:'HH:mm:ss'}}]</span><span class="privateMsg">{{value['from']}} >> {{value['nick']}}:</span> {{value['message']}}</li>
+</ul>
+<form name="message">
+	<div class="input-group">
+	    <input type="text" class="form-control" name="chatMessage" ng-model="chatMsg" placeholder="/msg nick ..." autofocus="autofocus" autocomplete="off">
+	    <span class="input-group-btn">
+	        <button class="btn btn-default" ng-click="sendMessage(chatMsg)">Send</button>
+	      </span>
+	</div>
+</form>

@@ -6,6 +6,7 @@ angular.module("Chatroom").controller("ChatRoomController",
         console.log("Im in the ChatRoomController");
 
         $scope.chatMsg = "";
+        $scope.privateMessageHistory = [];
 
         $scope.chatroomName = $stateParams.ChatroomName;
 

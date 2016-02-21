@@ -5,14 +5,16 @@
 		<div ui-view="roomlist"></div>
 	</div>
 	<div class="col-md-8">
-		<div ui-view="chatroom"></div>
+		<uib-tabset>
+			<uib-tab heading="Channel">
+				<div ui-view="chatroom"><uib-tab-heading>{{chatroom.chatroomName}}</uib-tab-heading></div>
+			</uib-tab>
+			<uib-tab heading="Private Messages">
+				<div ui-view="privateMsg"></div>
+			</uib-tab>
+		</uib-tabset>
 	</div>
 	<div class="col-md-2">
 		<div ui-view="connectedUsers"></div>
 	</div>
 </div>
-
-<div class="privmsg">
-	<div ui-view="privateMsg"></div>
-</div>
-

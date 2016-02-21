@@ -1,5 +1,5 @@
 <h1>#{{chatroomName}} <small>{{chatroomTopic}}</small></h1>
-<ul id="chatspace" class="list-unstyled" scroll-glue>
+<ul class="chatspace" class="list-unstyled" scroll-glue>
 	<li ng-repeat="(key, value) in msgHistory"><span class="timestamp">[{{value['timestamp'] | amUtc | amLocal | amDateFormat:'HH:mm:ss'}}]</span><span class="nick">{{value['nick']}}:</span> {{value['message']}}</li>
 </ul>
 <form name="message">
