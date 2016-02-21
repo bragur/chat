@@ -1,60 +1,54 @@
 body {
-	background-image: url('/img/bg.jpg');
-	background-size: cover;
-	background-repeat: no-repeat;
-	font-family: Helvetica;
-
-	.logo {
-		background: url('/img/logo.png') center no-repeat;
-		margin-top: 100px;
-		margin-bottom: 40px;
-		height: 90px;
-	}
-
-	ul {
-		&.chatspace {
-		    width: 100%;
-		    height: 500px;
-		    color: white;
-		    background-color: rgba(15,21,14,0.8);
-		    border: 1px #ccc solid;
-		    border-radius: 5px;
-		    overflow: scroll;
-		    padding: 5px;
-
-		    h1 {
-		    	font-weight: bold;
-		    	font-size: 40px;
-		    	small {
-		    		font-size: 20px;
-		    		color: #ccc;
-		    		font-style: italic;
-		    	}
-		    }
-		}
-
-		li {
-			.timestamp {
-				color: cornflowerblue;
-				padding: 2px;
-				font-size: 0.8em;
-			}
-
-			.nick {
-				color: green;
-				padding: 2px;
-				padding-right: 4px;
-				font-size: 0.8em;
-				font-weight: bold;
-			}
-
+    background-image: url('/img/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: Helvetica;
+    .logo {
+        background: url('/img/logo.png') center no-repeat;
+        margin-top: 100px;
+        margin-bottom: 40px;
+        height: 90px;
+    }
+    ul {
+        &.chatspace {
+            width: 100%;
+            height: 500px;
+            color: white;
+            background-color: rgba(15, 21, 14, 0.8);
+            border: 1px #ccc solid;
+            border-radius: 5px;
+            overflow: scroll;
+            padding: 5px;
+            h1 {
+                font-weight: bold;
+                font-size: 40px;
+                small {
+                    font-size: 20px;
+                    color: #ccc;
+                    font-style: italic;
+                }
+            }
+        }
+        li {
+            .timestamp {
+                color: cornflowerblue;
+                padding: 2px;
+                font-size: 0.8em;
+            }
+            .nick {
+                color: green;
+                padding: 2px;
+                padding-right: 4px;
+                font-size: 0.8em;
+                font-weight: bold;
+            }
 			.privateMsg {
 				color: red;
-				padding: 2px;
-				padding-right: 4px;
-				font-size: 0.8em;
-				font-weight: bold;
+                padding: 2px;
+                padding-right: 4px;
+                font-size: 0.8em;
+                font-weight: bold;
 			}
-		}
-	}
+        }
+    }
 }

@@ -126,5 +126,8 @@ gulp.task('moveStuff', function() {
     gulp.src(userPrefix + '/src/img/**/*.*')
         .pipe(gulp.dest('build/img'))
 
+    gulp.src(userPrefix + '/src/img/**/*.*')
+        .pipe(gulp.dest('build/img'))
+
     console.log('-- All HTML-files were copied to build folder')
 });
