@@ -6,6 +6,13 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 	//$scope.chatMsg = "";
 
 	$scope.chatroomName = $stateParams.ChatroomName;
+	$scope.nick = SharedProperties.getNick();
+
+	$scope.highlight = function(msg) {
+		if (msg.indexOf("@" + $scope.nick) > -1) {
+			return "highlight";
+		}
+	};
 
 	var joinObj = {
 		room: $scope.chatroomName,
@@ -36,6 +43,11 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 	}, 200);
 
 	$scope.sendMessage = function sendMessage(mess) {
+		if (mess.trim().length < 1) {
+			$scope.chatMsg = "";
+			return;
+		}
+
 		if (mess.charAt(0) !== '/') {
             var data = {
                 roomName: $scope.chatroomName,
@@ -109,6 +121,7 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 	SocketService.on('updatetopic', function (room, topic, username) {
 		if (room === $scope.chatroomName && username === SharedProperties.getNick()) {
 			console.log(username + " updated topic in " + room + " to: " + topic);
+			$scope.chatroomTopic = topic;
 		}
 	});
 
