@@ -10,8 +10,6 @@ function($scope, $location, SocketService, SharedProperties) {
 	SocketService.on('roomlist', function(rooms) {
 		$scope.rooms = rooms;
 		SharedProperties.setRooms(rooms);
-		//console.log(SharedProperties.getRooms());
-
 	});
 
 	$scope.createRoom = function createRoom(newRoom) {
@@ -19,10 +17,9 @@ function($scope, $location, SocketService, SharedProperties) {
 		var currRoom = SharedProperties.getCurrentRoom();
 		if (newRoom !== currRoom) {
 			SocketService.emit('partroom', SharedProperties.getCurrentRoom());
-			console.log("Im leaving:");
-			console.log(SharedProperties.getCurrentRoom());
+			console.log("Im leaving: " + SharedProperties.getCurrentRoom());
 
-			console.log("In createRoom with " + newRoom);
+			console.log("Gonna join: " + newRoom);
 			if (newRoom !== '') {
 				$location.path('/chatroom/' + newRoom);
 			}

@@ -146,6 +146,9 @@ io.sockets.on('connection', function (socket) {
 		//Update the userlist in the room.
 		io.sockets.emit('updateusers', room, rooms[room].users, rooms[room].ops);
 		io.sockets.emit('servermessage', "part", room, socket.username);
+		if (Object.keys(rooms[room].users).length < 1 && room !== 'lobby') {
+			delete rooms[room];
+		}
 	});
 
 	// when the user disconnects.. perform this

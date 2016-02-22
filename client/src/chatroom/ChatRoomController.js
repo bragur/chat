@@ -22,13 +22,6 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 	SocketService.emit('joinroom', joinObj, function (allowed, reason) {
 		console.log("Attempting to join " + $scope.chatroomName);
 		if (allowed) {
-			// Updated info on recently joined room
-
-			// Updated messageHistory
-			/*SocketService.on('updatechat', function (room, messageHistory) {
-				$scope.msgHistory = messageHistory;
-				console.log(messageHistory);
-			});*/
 			SharedProperties.setCurrentRoom($scope.chatroomName);
 
 		} else {
