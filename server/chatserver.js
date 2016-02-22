@@ -100,7 +100,7 @@ io.sockets.on('connection', function (socket) {
 	// when the client emits 'sendchat', this listens and executes
 	socket.on('sendmsg', function (data) {
 		
-		var userAllowed = false;
+		var userAllowed = data.fromServer;
 
 		console.log("userAllowed: " + userAllowed);
 
@@ -119,6 +119,9 @@ io.sockets.on('connection', function (socket) {
 				timestamp :  new Date(),
 				message : data.msg.substring(0, 200)
 			};
+			if (data.fromServer) {
+				messageObj.nick = "@@@serverMsg@@@";
+			}
 			rooms[data.roomName].addMessage(messageObj);
 			io.sockets.emit('updatechat', data.roomName, rooms[data.roomName].messageHistory);
 		}

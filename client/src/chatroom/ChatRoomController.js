@@ -33,8 +33,6 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 
 	setTimeout(function() { 
 		$scope.chatroomTopic = SharedProperties.getTopic($scope.chatroomName);
-		console.log($scope.chatroomTopic);
-		// $scope.headers.channelHeader += ": " + $scope.chatroomTopic.substring(0, 100);
 		$scope.$apply(); 
 	}, 200);
 
@@ -47,10 +45,9 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 		if (mess.charAt(0) !== '/') {
             var data = {
                 roomName: $scope.chatroomName,
-                msg: mess
+                msg: mess,
+                fromServer: false
             };
-
-            console.log("Sending msg to " + data.roomName + ": " + mess);
 
             SocketService.emit('sendmsg', data);
         } else {
@@ -68,6 +65,8 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
                 };
             } else if (action === 'msg') {
                 $rootScope.$broadcast('privateFromChannel', mess);
+            } else if (action === 'join') {
+            	$rootScope.$broadcast('joinChannel', params[0]);
             } else {
                 obj = {
                     user: params[0],
@@ -76,9 +75,7 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
             }
 
             if (actions.indexOf(action) > -1) {
-                SocketService.emit(action, obj, function(success) {
-                console.log(action + " successful!");
-            });
+                SocketService.emit(action, obj, function(success) {});
             }
         }
 
@@ -88,14 +85,11 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 
 	SocketService.on('updatechat', function (roomName, messageHistory) {
 		if (roomName === $scope.chatroomName) {
-			console.log("messagehistory is: ");
-			console.log(messageHistory);
 			$scope.msgHistory = messageHistory;
 		}
 	});
 
 	SocketService.on('updateusers', function (room, users, ops) {
-		//var chatroom = SharedProperties.getRoom(room);
 
 		if (room === $scope.chatroomName) {
 			$scope.users = users; //chatroom.users;
@@ -106,24 +100,36 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 				Ops: $scope.ops,
 				Room: room
 			};
-			console.log(updatedUsers);
 		}
 	});
 
 	SocketService.on('updatetopic', function (room, topic, username) {
 		if (room === $scope.chatroomName && username === SharedProperties.getNick()) {
-			console.log(username + " updated topic in " + room + " to: " + topic);
 			$scope.chatroomTopic = topic;
 			$scope.headers.channelHeader = $scope.chatroomName + ": " + $scope.chatroomTopic.substring(0, 50);
 			if ($scope.chatroomTopic.length > 50) {
 				$scope.headers.channelHeader += "...";
 			}
+
+			var serverMsg = {
+				msg: username + " changed the topic to: " + topic,
+				roomName: room,
+				fromServer: true 
+			};
+
+			SocketService.emit('sendmsg', serverMsg);
 		}
 	});
 
 	SocketService.on('servermessage', function (status, room, username) {
 		if (room === $scope.chatroomName && username === SharedProperties.getNick()) {
-			console.log(username + " " + status + " " + room);
+			var serverMsg = {
+				msg: username + " " + status + "ed the channel.",
+				roomName: $scope.chatroomName,
+				fromServer: true
+			};
+
+			SocketService.emit('sendmsg', serverMsg);
 		}
 	});
 

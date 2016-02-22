@@ -1,8 +1,8 @@
 <!-- partial-lobby-connectedUsers.html -->
-
-<ul class="list-inline">
+<h2>Logged on</h2>
+<ul class="list-inline blobs">
     <li ng-repeat="op in ops"><a ng-click="privateMsg(op)" class="btn btn-warning">{{op}}</a></li>
 </ul>
-<ul class="list-inline">
+<ul class="list-inline blobs">
     <li ng-repeat="user in users" ng-if="ops[user] === undefined"><a ng-click="privateMsg(user)" class="btn btn-danger">{{user}}</a></li>
 </ul>

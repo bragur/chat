@@ -1,6 +1,15 @@
 <!--h1><span class="label label-default">{{chatroomTopic}}</span></h1-->
 <ul class="chatspace" class="list-unstyled" scroll-glue>
-	<li ng-repeat="(key, value) in msgHistory"><span class="timestamp">[{{value['timestamp'] | amUtc | amLocal | amDateFormat:'HH:mm:ss'}}]</span><span ng-class="value['nick'] === nick ? 'me' : 'nick'">{{value['nick']}}:</span> <span ng-class="highlight(value['message'])">{{value['message']}}</span></li>
+	<li ng-repeat="(key, value) in msgHistory">
+		<span class="timestamp">[{{value['timestamp'] | amUtc | amLocal | amDateFormat:'HH:mm:ss'}}]</span>
+		<span ng-if="value['nick'] !== '@@@serverMsg@@@'">
+			<span ng-class="value['nick'] === nick ? 'me' : 'nick'">{{value['nick']}}:</span>
+			<span ng-class="highlight(value['message'])">{{value['message']}}</span>
+		</span>
+		<span ng-if="value['nick'] === '@@@serverMsg@@@'">
+			<span class="server-msg">*** {{value['message']}}</span>
+		</span>
+	</li>
 </ul>
 <form name="message">
 	<div class="input-group">

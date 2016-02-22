@@ -1,6 +1,7 @@
 <!-- partial-lobby-roomList.html -->
 
-<button uib-popover-template="'/lobby/partial-create-room.html'" popover-title="Create New Room" popover-trigger="outsideClick" type="button" class="btn btn-default">Create new Room</button>
-<ul class="list-inline">
+<!--button uib-popover-template="'/lobby/partial-create-room.html'" popover-title="Create New Room" popover-trigger="outsideClick" type="button" class="btn btn-default">Create new Room</button-->
+<h2>Channels</h2>
+<ul class="list-inline blobs">
     <li ng-repeat="(name, room) in rooms"><a class="btn btn-danger"  ng-click="createRoom(name)"> {{name}} </a></li>
 </ul>

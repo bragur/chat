@@ -12,6 +12,10 @@ function($scope, $location, SocketService, SharedProperties) {
 		SharedProperties.setRooms(rooms);
 	});
 
+	$scope.$on('joinChannel', function(e, obj) {
+		$scope.createRoom(obj);
+	});
+
 	$scope.createRoom = function createRoom(newRoom) {
 
 		var currRoom = SharedProperties.getCurrentRoom();
