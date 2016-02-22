@@ -18,6 +18,11 @@ angular.module('Chatroom').controller('PrivateMessageController',
 			$scope.chatMsg = "";
 		};
 
+		$scope.$on('privateFromChannel', function(e, obj) {
+			console.log("Received private msg from Channel");
+			$scope.sendMessage(obj);
+		});
+
 		SocketService.on('recv_privatemsg', function(from, msg) {
         	var msgObj = {
         		nick: "me",

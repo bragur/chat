@@ -55,7 +55,7 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
             SocketService.emit('sendmsg', data);
         } else {
             var action = mess.split(" ")[0].substring(1);
-            var actions = ['settopic', 'privatemsg', 'ban', 'unban', 'op', 'deop', 'kick'];
+            var actions = ['settopic', 'ban', 'unban', 'op', 'deop', 'kick'];
             var line = mess.substring(action.length + 2);
             var params = line.split(" ");
             var obj = {};
@@ -67,11 +67,7 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
                     room: $scope.chatroomName
                 };
             } else if (action === 'msg') {
-                action = 'privatemsg';
-                obj = {
-                    nick: params[0],
-                    message: line.substring(params[0].length + 1)
-                };
+                $rootScope.$broadcast('privateFromChannel', mess);
             } else {
                 obj = {
                     user: params[0],

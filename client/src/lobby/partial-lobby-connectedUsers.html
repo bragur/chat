@@ -1,6 +1,8 @@
 <!-- partial-lobby-connectedUsers.html -->
 
-<ul>
-    <!-- ng-repeat="(name, room) in rooms">{{ name }}</li> -->
-    <a ng-click="privateMsg(user)" class="btn btn-danger" ng-repeat="user in users"> {{user}} </a><br>
+<ul class="list-inline">
+    <li ng-repeat="op in ops"><a ng-click="privateMsg(op)" class="btn btn-warning">{{op}}</a></li>
+</ul>
+<ul class="list-inline">
+    <li ng-repeat="user in users" ng-if="ops[user] === undefined"><a ng-click="privateMsg(user)" class="btn btn-danger">{{user}}</a></li>
 </ul>
