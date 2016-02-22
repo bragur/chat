@@ -52,3 +52,21 @@ We also have to run a simple server in the build folder, which gulp made for us,
 	python -m SimpleHTTPServer
 
 Then you should be able to navigate to *localhost:8000* via **Google Chrome**.
+
+## Using the app
+
+Using the app should be fairly straight-forward. Choose a nick to begin with on the begin screen.
+
+On the left there is a list of active channels. You should be able to click on any one of them to get in (unless banned), but in this app we only use one channel at a time, so you will leave the current channel. You can also simply write
+
+	/join channelname
+
+On the right there is a list of the users of the current channel, ops are yellow and normal users are red. Ops can /op other users, /kick and /ban by using the respective command followed by the nick of the wanted user.
+
+The messaging terminal has two tabs. One for the current channel and the other for private messaging. It is possible to send a private message from either terminal by entering
+
+	/msg nick message
+
+If you are not currently in the private messaging tab, you will get notified both visually and aurally.
+
+That's about it for now.
