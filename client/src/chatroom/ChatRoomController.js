@@ -34,6 +34,7 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 	setTimeout(function() { 
 		$scope.chatroomTopic = SharedProperties.getTopic($scope.chatroomName);
 		console.log($scope.chatroomTopic);
+		// $scope.headers.channelHeader += ": " + $scope.chatroomTopic.substring(0, 100);
 		$scope.$apply(); 
 	}, 200);
 
@@ -117,6 +118,10 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 		if (room === $scope.chatroomName && username === SharedProperties.getNick()) {
 			console.log(username + " updated topic in " + room + " to: " + topic);
 			$scope.chatroomTopic = topic;
+			$scope.headers.channelHeader = $scope.chatroomName + ": " + $scope.chatroomTopic.substring(0, 50);
+			if ($scope.chatroomTopic.length > 50) {
+				$scope.headers.channelHeader += "...";
+			}
 		}
 	});
 

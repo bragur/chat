@@ -18,7 +18,7 @@ angular.module('Chatroom').controller('TabsController', function($scope, SocketS
 		if ($scope.seen === 0) {
 			document.getElementById('msg-alert').play();
 			$scope.unseen = true;
-			$scope.headers.msgHeader = "New Msg!";
+			$scope.headers.msgHeader = 'New Msg!';
 		}
 	});
 
