@@ -1,5 +1,7 @@
-angular.module('Chatroom').controller('TabsController', function($scope, SocketService) {
-	$scope.msgHeader = "Private Messages";
+angular.module('Chatroom').controller('TabsController', function($scope, SocketService, SharedProperties) {
+	$scope.headers = SharedProperties.headers();
+	$scope.headers.msgHeader = "Private Messages";
+	// $scope.headers.channelHeader = "Channel";
 	$scope.seen = 0;
 	$scope.unseen = false;
 
@@ -8,7 +10,7 @@ angular.module('Chatroom').controller('TabsController', function($scope, SocketS
 		$scope.seen = tab;
 
 		if ($scope.seen === 1 && $scope.unseen === true) {
-			$scope.msgHeader = "Private Messages";
+			$scope.headers.msgHeader = "Private Messages";
 		}
 	};
 
@@ -16,7 +18,12 @@ angular.module('Chatroom').controller('TabsController', function($scope, SocketS
 		if ($scope.seen === 0) {
 			document.getElementById('msg-alert').play();
 			$scope.unseen = true;
-			$scope.msgHeader = "New Msg!";
+			$scope.headers.msgHeader = "New Msg!";
 		}
 	});
+
+	$scope.$on("$destroy", function(){
+        SocketService.off("recv_privatemsg", function(success) {});
+        SocketService.off("roomlist", function(success) {});
+    });
 });

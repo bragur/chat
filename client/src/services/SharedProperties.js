@@ -9,6 +9,8 @@ angular.module('Chatroom').service('SharedProperties', function() {
 
 	var currentRoomUsers;
 
+	var headers = {};
+
 	return {
 		getRooms: function getRooms() {
 			return rooms;
@@ -49,6 +51,9 @@ angular.module('Chatroom').service('SharedProperties', function() {
 		},
 		setCurrRoomUsers: function setCurrRoomUsers(users) {
 			currentRoomUsers = users;
+		},
+		headers: function() {
+			return headers;
 		}
 	};
 });

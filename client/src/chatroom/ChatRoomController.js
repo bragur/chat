@@ -6,6 +6,8 @@ function($scope, $rootScope, $stateParams, SocketService, SharedProperties) {
 	//$scope.chatMsg = "";
 
 	$scope.chatroomName = $stateParams.ChatroomName;
+	$scope.headers = SharedProperties.headers();
+	$scope.headers.channelHeader = $scope.chatroomName;
 	$scope.nick = SharedProperties.getNick();
 
 	$scope.highlight = function(msg) {

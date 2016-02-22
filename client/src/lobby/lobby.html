@@ -6,10 +6,10 @@
 	</div>
 	<div class="col-md-8" ng-controller="TabsController">
 		<uib-tabset>
-			<uib-tab heading="Channel" select="chosen(0)">
+			<uib-tab heading="{{headers.channelHeader}}" select="chosen(0)">
 				<div ui-view="chatroom"><uib-tab-heading>{{chatroom.chatroomName}}</uib-tab-heading></div>
 			</uib-tab>
-			<uib-tab heading="{{msgHeader}}" select="chosen(1)">
+			<uib-tab heading="{{headers.msgHeader}}" select="chosen(1)">
 				<div ui-view="privateMsg"></div>
 			</uib-tab>
 		</uib-tabset>
