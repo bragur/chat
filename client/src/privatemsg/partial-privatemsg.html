@@ -1,3 +1,4 @@
+<audio id="msg-alert" style="display: none;" src="sounds/new_msg.mp3"></audio>
 <ul class="chatspace" class="list-unstyled" scroll-glue>
 	<li ng-repeat="(key, value) in msgHistory"><span class="timestamp">[{{value['timestamp'] | amUtc | amLocal | amDateFormat:'HH:mm:ss'}}]</span><span class="privateMsg">{{value['from']}} >> {{value['nick']}}:</span> {{value['message']}}</li>
 </ul>

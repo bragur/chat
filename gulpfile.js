@@ -50,13 +50,14 @@ gulp.task('jshint', function() {
             "node":   true,
             "undef":  true,
             "globals": {
-                "angular": false,
-                "_":       false,
-                "jQuery":  false,
-                "$":       false,
-                "moment":  false,
-                "console": false,
-                "io":      false,
+                "angular":  false,
+                "_":        false,
+                "jQuery":   false,
+                "$":        false,
+                "moment":   false,
+                "console":  false,
+                "io":       false,
+                "document": false,
             },
         }))
         .pipe(jshint.reporter(stylish))
@@ -125,6 +126,8 @@ gulp.task('moveStuff', function() {
         .pipe(gulp.dest('build'))
     gulp.src(userPrefix + '/src/img/**/*.*')
         .pipe(gulp.dest('build/img'))
+    gulp.src(userPrefix + '/src/sounds/**/*.*')
+        .pipe(gulp.dest('build/sounds'))
 
     console.log('-- All HTML-files were copied to build folder')
 });

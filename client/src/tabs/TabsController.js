@@ -14,6 +14,7 @@ angular.module('Chatroom').controller('TabsController', function($scope, SocketS
 
 	SocketService.on('recv_privatemsg', function(from, msg) {
 		if ($scope.seen === 0) {
+			document.getElementById('msg-alert').play();
 			$scope.unseen = true;
 			$scope.msgHeader = "New Msg!";
 		}
